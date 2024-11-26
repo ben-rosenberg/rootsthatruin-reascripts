@@ -1,4 +1,5 @@
 local TESTING = false
+local QUANTIZE = true
 
 local rPrint = reaper.ShowConsoleMsg
 local timeToBeats = reaper.TimeMap2_timeToBeats
@@ -20,6 +21,7 @@ local retval, grid_division = reaper.GetSetProjectGrid(0, false)
 grid_division = grid_division * 4
 
 local TTT_ID = 40375
+local SPLIT_ID = reaper.NamedCommandLookup("_SWS_AWSPLITXFADELEFT")
 local leading_pad = 0.005
 local late_hit_leading_pad = 0.005
 local retrigger_time = 0.05
@@ -82,11 +84,19 @@ else
     reaper.ApplyNudge(0, 0, 6, 1, leading_pad, true, 0)
 end
 
+if QUANTIZE then
+
+reaper.Main_OnCommand(SPLIT_ID, 0)
+reaper.ApplyNudge(0, 0, 4, 1, nearest_grid_tpos - transient_pos, false, 0)
+
+end
 
 else -- TESTING
 
-local tpos = reaper.GetCursorPosition()
-local nearest_grid_tpos = getNearestGridPositionTime(tpos)
-printMult(" ", tpos, nearest_grid_tpos, isCloseEnoughTime(tpos) and "close enough" or "not close enough")
+
+-- local media_item_take = reaper.GetMediaItemTake(reaper.GetSelectedMediaItem(0, 0), 0)
+-- reaper.SetMediaItemTakeInfo_Value(media_item_take, "D_STARTOFFS", 1)
+
+reaper.ApplyNudge(0, 0, 4, 1, 1, false, 0)
 
 end
