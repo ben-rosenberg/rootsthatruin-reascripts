@@ -2,16 +2,7 @@ local rPrint = reaper.ShowConsoleMsg
 local timeToBeats = reaper.TimeMap2_timeToBeats
 local beatsToTime = reaper.TimeMap2_beatsToTime
 
-local function printMult(separator_string, ...)
-    local args = {...}
-    for i, v in ipairs(args) do
-        rPrint(tostring(v) .. separator_string)
-    end
-end
-
 local abs = math.abs
-local floor = math.floor
-local ceil = math.ceil
 
 local retval, grid_division = reaper.GetSetProjectGrid(0, false)
 grid_division = grid_division * 4
@@ -44,28 +35,34 @@ local function getNearestGridPositionTime(tpos)
     return beatsToTime(0, getNearestGridPosition(beats), measure)
 end
 
-local function isCloseEnough(tpos_beats)
-    return abs(tpos_beats - getNearestGridPosition(tpos_beats)) <= precision
-end
-
 local function isCloseEnoughTime(tpos)
     return abs(tpos - getNearestGridPositionTime(tpos)) <= precision
 end
 
-local transient_pos = reaper.GetCursorPosition()
+local cursor_pos = reaper.GetCursorPosition()
+local transient_pos = cursor_pos
+local last_transient_pos = cursor_pos
 local last_pos = transient_pos
 local last_loop = transient_pos
 local loop_counter = 0
 local MAX_LOOPS_BEFORE_BREAK = 50
 
+-- TODO refactor into do... while loop
+--[[ repeat
+    
+until (transient_pos - last_pos > retrigger_time and not isCloseEnoughTime(transient_pos)) ]]
+
 while transient_pos - last_pos < retrigger_time
+or transient_pos - last_transient_pos < retrigger_time
 or isCloseEnoughTime(transient_pos) do
+    last_transient_pos = transient_pos
     reaper.Main_OnCommand(TTT_ID, 0)
     transient_pos = reaper.GetCursorPosition()
 
     if last_loop == transient_pos then break end
     last_loop = transient_pos
-    
+
+
     loop_counter = loop_counter + 1
     if loop_counter > MAX_LOOPS_BEFORE_BREAK then
         break
@@ -81,4 +78,4 @@ else -- early hit
 end
 
 reaper.Main_OnCommand(SPLIT_ID, 0)
-reaper.ApplyNudge(0, 0, 4, 1, nearest_grid_tpos - transient_pos, false, 0)
+reaper.ApplyNudge(0, 0, 4, 1, nearest_grid_tpos - transient_pos, false, 0) -- quantize

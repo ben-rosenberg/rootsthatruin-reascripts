@@ -22,7 +22,7 @@ This tool is most effective when assigned to an easily executable keyboard short
 
 Set the grid division to match the items rhythm, just like you would with standard slip editing. Routinely reset the grid division when the item's rhythm changes.
 
-Select the media item that you would like to edit. If editing drums, render a dummy track with the kit items that you would like to edit--typically kick, snare, and toms. Group this new track with the other drum tracks and select this dummy track. Place the cursor before the first hit that you would like to edit, and execute the SlipEditHelper action using the keyboard shortcut that you assigned. Confirm that the tool correctly detected the transient of the next off-time hit, and that it moved it to the intended grid point. Repeat this process, periodically listening to the new edits to check for incorrect or bad edits. Undo with `Ctrl+Z` as needed and manually edit difficult hits if needed.
+Select the media item(s) that you would like to edit. If editing drums, render a dummy track with the kit items that you would like to edit--typically kick, snare, and toms. Group this new track with the other drum tracks and select this dummy track. Place the cursor before the first hit that you would like to edit, and execute the SlipEditHelper action using the keyboard shortcut that you assigned. Confirm that the tool correctly detected the transient of the next off-time hit, and that it moved it to the intended grid point. Repeat this process, periodically listening to the new edits to check for incorrect or bad edits. Undo with `Ctrl+Z` as needed and manually edit difficult hits if needed.
 
 ## Troubleshooting
 
