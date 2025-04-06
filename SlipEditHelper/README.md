@@ -14,7 +14,7 @@ Tip: if you couldn't find the Scripts folder in step 2, clicking "Load action...
 
 ### Setting the transient detection sensitivity
 
-This tool makes use of Reaper's built-in transient detection algorithm. To adjust the transient detection settings, click the Edit tab followed by Transient Detection Settings. Adjust this so that Reaper detects most or all of the item's transients without detecting non-hits. This may need to be adjusted frequently for very dynamic parts.
+This tool makes use of Reaper's built-in transient detection algorithm. To adjust the transient detection threshold, click the Edit tab then Transient Detection Settings. Adjust the threshold so that Reaper detects most or all of the item's transients without detecting non-hits. Reaper provides a visual reference when changing the transient detection threshold, and the threshold can also be tested using the tab-to-transient feature by highlighting the item you want to edit and pressing the Tab key. Confirm that Reaper is detecting transients accurately. The threshold may need to be adjusted frequently for very dynamic parts.
 
 ### Editing
 
@@ -22,7 +22,7 @@ This tool is most effective when assigned to an easily executable keyboard short
 
 Set the grid division to match the items rhythm, just like you would with standard slip editing. Routinely reset the grid division when the item's rhythm changes.
 
-Select the media item(s) that you would like to edit. If editing drums, render a dummy track with the kit items that you would like to edit--typically kick, snare, and toms. Group this new track with the other drum tracks and select this dummy track. Place the cursor before the first hit that you would like to edit, and execute the SlipEditHelper action using the keyboard shortcut that you assigned. Confirm that the tool correctly detected the transient of the next off-time hit, and that it moved it to the intended grid point. Repeat this process, periodically listening to the new edits to check for incorrect or bad edits. Undo with `Ctrl+Z` as needed and manually edit difficult hits if needed.
+Select the media item(s) that you would like to edit. If editing drums, group all kit tracks. Place the cursor before the first transient that you would like to edit and execute the SlipEditHelper action using the keyboard shortcut that you assigned. Confirm that the tool correctly detected the transient of the next off-time hit and that it moved it to the intended grid point. Repeat this process, periodically listening to the new edits to check for incorrect or bad edits. Undo with `Ctrl+Z` as needed and manually edit difficult hits if needed.
 
 ## Troubleshooting
 
@@ -34,7 +34,6 @@ Select the media item(s) that you would like to edit. If editing drums, render a
 ### Edits at Points with No Transient
 
 - Increase the Transient Detection threshold
-- If editing drums, gate and/or high/low pass filter the kit pieces before rendering the dummy track
 
 ### Item Contents Moved to Unintended Grid Points
 
