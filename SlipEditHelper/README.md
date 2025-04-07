@@ -2,6 +2,8 @@
 
 SlipEditHelper is a Lua script for the digital audio workstation Reaper to assist with slip editing audio files. When executed it splits the selected item slightly before the next transient for early hits, or slightly before the nearest grid point for late hits. It then moves the contents of the now split item so that the transient aligns with the nearest grid point, just as in manual slip editing. It ignores transients that are "close enough" to the grid.
 
+This script uses an action from the SWS extension. If you do not have SWS, the script will still work, but the option "Crossfade left when splitting" must be on. It can be toggled on by opening the actions menu, pasting that action into the search bar, and clicking run. Edits will likely be audible and unusable if that option is not on.
+
 ## Installation
 
 1. Download this folder.

@@ -1,4 +1,3 @@
-local rPrint = reaper.ShowConsoleMsg
 local timeToBeats = reaper.TimeMap2_timeToBeats
 local beatsToTime = reaper.TimeMap2_beatsToTime
 
@@ -9,6 +8,7 @@ grid_division = grid_division * 4
 
 local TTT_ID = 40375
 local SPLIT_ID = reaper.NamedCommandLookup("_SWS_AWSPLITXFADELEFT")
+SPLIT_ID = SPLIT_ID == 0 and 40759 or SPLIT_ID
 local leading_pad = 0.005
 local late_hit_leading_pad = 0.005
 local retrigger_time = 0.05
